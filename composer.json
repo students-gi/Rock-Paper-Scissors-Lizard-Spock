@@ -1,0 +1,21 @@
+{
+    "name": "baltimoore/rock_paper_scissors_lizard_spock",
+    "description": "Final task for the Ruby on Rails academy acceptance organised by Mitigate",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gatis Ieviņš",
+            "email": "personal@maskless.id.lv"
+        }
+    ],
+    "require": {
+        "php": "^8",
+        "monolog/monolog": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "RockPaperScissorsLizardSpock\\": "src/"
+        }
+    }
+}
