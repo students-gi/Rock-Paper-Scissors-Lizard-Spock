@@ -8,6 +8,11 @@ use RockPaperScissorsLizardSpock\Constants\GamePositionEnum;
 class UserPlayer extends Player
 {
 
+    public function __construct()
+    {
+        parent::__construct("You");
+    }
+
     public function setCurrentHand(): void
     {
         echo "Here is a list of all available moves:" . PHP_EOL;

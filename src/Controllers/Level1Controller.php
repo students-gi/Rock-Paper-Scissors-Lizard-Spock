@@ -14,15 +14,13 @@ class Level1Controller
         // Creating the players
         $userPlayer = new UserPlayer();
         $computerPlayer = new ComputerPlayer();
-        // Creating the round instance
-        $gameRoundService = new GameRoundService();
 
         // Playing for the 3 rounds
         for ($round = 1; $round <= 3; $round++) {
             echo PHP_EOL . " ===== Round $round ===== " . PHP_EOL;
 
             // Executing the round
-            $winner = $gameRoundService->playRound($userPlayer, $computerPlayer);
+            $winner = GameRoundService::playRound($userPlayer, $computerPlayer);
 
             // Printing out the round results
             echo "You chose: " . $userPlayer->getCurrentHand() . PHP_EOL;
@@ -41,8 +39,8 @@ class Level1Controller
 
         echo PHP_EOL . " ===== The game has ended! ===== " . PHP_EOL;
 
-        $userWins = $userPlayer->getWinCount();
-        $computerWins = $computerPlayer->getWinCount();
+        $userWins = $userPlayer->getRoundWinCount();
+        $computerWins = $computerPlayer->getRoundWinCount();
 
         if ($userWins > $computerWins) {
             echo "Congratulations! You won the game!";

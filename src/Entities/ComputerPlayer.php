@@ -10,9 +10,9 @@ class ComputerPlayer extends Player
     // An associative array containing all valid moves as keys and the preference of picking them as values
     private array $movePreferences;
 
-    public function __construct(GamePositionEnum ...$preferredMoves)
+    public function __construct(string $computerPlayerName = "", string ...$preferredMoves)
     {
-        parent::__construct();
+        parent::__construct($computerPlayerName);
 
         $defaultProbability = 1;
         $this->initializeMovePreferences($defaultProbability);
@@ -24,7 +24,7 @@ class ComputerPlayer extends Player
         $this->movePreferences = array_fill_keys(GamePositionEnum::toArray(), $defaultProbability);
     }
 
-    private function adjustMovePreferences(GamePositionEnum ...$preferredMoves): void
+    private function adjustMovePreferences(string ...$preferredMoves): void
     {
         $totalPreferredMoves = count($preferredMoves);
         $preferredMoveStep = 1;

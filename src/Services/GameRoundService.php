@@ -10,25 +10,25 @@ use RockPaperScissorsLizardSpock\Exceptions\GamePositionException;
 class GameRoundService
 {
 
-    public function playRound(Player $player1, Player $player2): int
+    public static function playRound(Player $player1, Player $player2): int
     {
         $player1->setCurrentHand();
         $player2->setCurrentHand();
 
-        $winner = $this->evaluateWinner($player1->getCurrentHand(), $player2->getCurrentHand());
+        $winner = self::evaluateWinner($player1->getCurrentHand(), $player2->getCurrentHand());
 
         // Adding the winner points
         if ($winner === 1) {
-            $player1->addWin();
+            $player1->addRoundWin();
         }
         elseif ($winner === 2) {
-            $player2->addWin();
+            $player2->addRoundWin();
         }
 
         return $winner;
     }
 
-    private function evaluateWinner(string $player1move, string $player2move): int
+    private static function evaluateWinner(string $player1move, string $player2move): int
     {
         if ($player1move === $player2move) {
             return 0; // Tie
