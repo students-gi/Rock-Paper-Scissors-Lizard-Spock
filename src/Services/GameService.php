@@ -5,7 +5,7 @@ namespace RockPaperScissorsLizardSpock\Services;
 use RockPaperScissorsLizardSpock\Entities\Player;
 use RockPaperScissorsLizardSpock\Exceptions\GameServiceException;
 
-// Represents the functionality of a complete game, going through the rounds and valvulating the final winner
+// Represents the functionality of a complete game, going through the rounds and evaluating the final winner
 class GameService
 {
 
@@ -53,7 +53,6 @@ class GameService
         $player2->resetRoundWins();
 
         return $winner;
-
     }
 
     private static function evaluateWinner(Player $player1, Player $player2): int

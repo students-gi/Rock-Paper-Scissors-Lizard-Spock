@@ -5,7 +5,7 @@ namespace RockPaperScissorsLizardSpock\Constants;
 use ReflectionClass;
 use ReflectionClassConstant;
 
-// An enum-like class that contains the valid shapes and their relationships
+// An enum-like class that contains the valid shapes/positions and their relationships
 class GamePositionEnum
 {
     public const ROCK = 'rock';
@@ -15,11 +15,12 @@ class GamePositionEnum
     public const SPOCK = 'spock';
 
     private static $positions = [
-        self::ROCK => ['beats' => [self::SCISSORS, self::LIZARD]],
-        self::PAPER => ['beats' => [self::ROCK, self::SPOCK]],
-        self::SCISSORS => ['beats' => [self::PAPER, self::LIZARD]],
-        self::LIZARD => ['beats' => [self::SPOCK, self::PAPER]],
-        self::SPOCK => ['beats' => [self::SCISSORS, self::ROCK]],
+
+        self::ROCK =>   ['beats' => [self::SCISSORS,self::LIZARD]],
+        self::PAPER =>  ['beats' => [self::ROCK,    self::SPOCK]],
+        self::SCISSORS=>['beats' => [self::PAPER,   self::LIZARD]],
+        self::LIZARD => ['beats' => [self::SPOCK,   self::PAPER]],
+        self::SPOCK =>  ['beats' => [self::SCISSORS,self::ROCK]],
     ];
 
     // Returns what positions the passed value can beat
@@ -40,6 +41,11 @@ class GamePositionEnum
         }
 
         return $indexedConstants;
+    }
+
+    private function __construct()
+    {
+        // Prevent instantiation of the class
     }
 
 }

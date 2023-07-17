@@ -9,7 +9,7 @@ use InvalidArgumentException;
 // An enum-like array class that contains computer player data
 class ComputerPlayerEnum
 {
-    private static array $playerDefinitions = [
+    public const PLAYER_DEFINITIONS = [
         "Dwayne Johnson" => [
             GamePositionEnum::ROCK,
             GamePositionEnum::ROCK,
@@ -53,10 +53,10 @@ class ComputerPlayerEnum
 
     public static function getPlayerById(int $index): ComputerPlayer
     {
-        $names = array_keys(self::$playerDefinitions);
+        $nameArray = array_keys(self::PLAYER_DEFINITIONS);
 
-        if (isset($names[$index])) {
-            $name = $names[$index];
+        if (isset($nameArray[$index])) {
+            $name = $nameArray[$index];
             return self::getPlayerByName($name);
         }
 
@@ -65,10 +65,9 @@ class ComputerPlayerEnum
 
     public static function getPlayerByName(string $index): ComputerPlayer
     {
-
-        if (isset(self::$playerDefinitions[$index])) {
+        if (isset(self::PLAYER_DEFINITIONS[$index])) {
             $name = $index;
-            $moves = self::$playerDefinitions[$name];
+            $moves = self::PLAYER_DEFINITIONS[$name];
             return new ComputerPlayer($name, ...$moves);
         }
 
@@ -77,11 +76,12 @@ class ComputerPlayerEnum
 
     public static function getPlayerCount(): int
     {
-        return count(self::$playerDefinitions);
+        return count(self::PLAYER_DEFINITIONS);
     }
 
     private function __construct()
     {
         // Prevent instantiation of the class
     }
+
 }

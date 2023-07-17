@@ -29,10 +29,10 @@ class Level2Controller
     {
         // Playing against all the players
         foreach (self::$computerPlayers as $computerPlayer) {
-            echo "====================================" . PHP_EOL;
+            echo "==============================" . PHP_EOL;
             $gamecard = self::$userPlayer->getPlayerName() . " VS " . $computerPlayer->getPlayerName();
-            echo str_pad($gamecard, 36, ' ', STR_PAD_BOTH) . PHP_EOL;
-            echo "============== FIGHT! ==============" . PHP_EOL;
+            echo str_pad($gamecard, 30, ' ', STR_PAD_BOTH) . PHP_EOL;
+            echo "=========== FIGHT! ===========" . PHP_EOL;
 
             // Executing the game
             $winner = GameService::playGame(self::$userPlayer, $computerPlayer, 3, true);
@@ -57,7 +57,7 @@ class Level2Controller
             echo PHP_EOL;
         }
 
-        echo PHP_EOL . " ===== The game has ended! ===== " . PHP_EOL;
+        echo PHP_EOL . "==== The game has ended! =====" . PHP_EOL;
 
         $userWins = self::$userPlayer->getGameWinCount();
 
@@ -69,4 +69,5 @@ class Level2Controller
         }
         echo PHP_EOL;
     }
+
 }

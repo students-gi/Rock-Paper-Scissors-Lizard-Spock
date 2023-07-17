@@ -8,8 +8,7 @@ abstract class Player
     protected int $gameWinCount;
     protected int $roundWinCount;
     protected ?string $currentHand; // Should always be a value from GamePositionEnum
-    // The Name of player, required by level 2
-    private string $playerName;
+    private string $playerName; // The Name of player, required by level 2
 
     public function __construct(string $playerName)
     {
@@ -31,8 +30,15 @@ abstract class Player
         $this->roundWinCount++;
     }
 
-    public function resetRoundWins(): void {
+    public function resetRoundWins(): void
+    {
         $this->roundWinCount = 0;
+    }
+
+    // Really only required by Level 3's minimal modifications
+    public function setPlayerName(string $newName): void
+    {
+        $this->playerName = $newName;
     }
 
     public function getGameWinCount(): int
@@ -50,12 +56,9 @@ abstract class Player
         return $this->currentHand;
     }
 
-    public function getPlayerName(): string {
+    public function getPlayerName(): string
+    {
         return $this->playerName;
-    }
-
-    public function setPlayerName(string $newName): void {
-        $this->playerName = $newName;
     }
 
 }

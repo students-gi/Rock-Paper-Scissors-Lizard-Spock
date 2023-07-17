@@ -10,6 +10,7 @@ use RockPaperScissorsLizardSpock\Services\GameService;
 
 class Level3Controller
 {
+
     public static function playGame(): void
     {
         // Setting up the player choices
@@ -75,6 +76,7 @@ class Level3Controller
     private static function opponentPairing(array &$allPlayers, $roundCount): void
     {
         $playerCount = count($allPlayers);
+
         for ($i = 0; $i < $playerCount; $i++) {
             $player1 = $allPlayers[$i];
             for ($j = $i + 1; $j < $playerCount; $j++) {
@@ -95,7 +97,7 @@ class Level3Controller
 
                 // Announcing the game's winner
                 if ($winner === 0) {
-                    // I'm going to ignore Ties this time around; no need to keep playing through a game to quit (IMO)
+                    // I'm going to ignore ties this time around; no need to keep playing through a game to quit (IMO)
                     $gameAnnouncement = "It's a draw!";
                 }
                 elseif ($winner === 1) {
@@ -137,4 +139,5 @@ class Level3Controller
         $playerId = mt_rand(1, ComputerPlayerEnum::getPlayerCount()) - 1;
         return ComputerPlayerEnum::getPlayerById($playerId);
     }
+
 }
