@@ -35,7 +35,7 @@ class Level2Controller
             echo "============== FIGHT! ==============" . PHP_EOL;
 
             // Executing the game
-            $winner = GameService::playGame(self::$userPlayer, $computerPlayer, 3);
+            $winner = GameService::playGame(self::$userPlayer, $computerPlayer, 3, true);
 
             // I'm assuming ties aren't allowed
             while ($winner === 0) {
@@ -48,7 +48,8 @@ class Level2Controller
                 echo "Congratulations! You defeated " . $computerPlayer->getPlayerName() . "!";
                 self::$userPlayer->addGameWin();
                 continue;
-            } elseif ($winner === 2) {
+            }
+            elseif ($winner === 2) {
                 echo "Sorry man, you lost to " . $computerPlayer->getPlayerName() . ".";
                 $computerPlayer->addGameWin();
                 break;
@@ -62,7 +63,8 @@ class Level2Controller
 
         if ($userWins >= 3) {
             echo "Congratulations! You defeated everybody in the game!";
-        } else {
+        }
+        else {
             echo "Game Over man, Game Over!";
         }
         echo PHP_EOL;

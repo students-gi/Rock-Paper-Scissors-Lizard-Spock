@@ -5,11 +5,16 @@ namespace RockPaperScissorsLizardSpock\Services;
 use RockPaperScissorsLizardSpock\Entities\Player;
 use RockPaperScissorsLizardSpock\Exceptions\GameServiceException;
 
+// Represents the functionality of a complete game, going through the rounds and valvulating the final winner
 class GameService
 {
 
-    public static function playGame(Player $player1, Player $player2, int $numberOfRounds): int
-    {
+    public static function playGame(
+        Player $player1,
+        Player $player2,
+        int $numberOfRounds,
+        bool $playFormattedGame = false
+    ): int {
         // Validating the round count
         if ($numberOfRounds <= 0) {
             throw new GameServiceException("Number of rounds in a game cannot be less than 1!");
@@ -17,24 +22,28 @@ class GameService
 
         // Running the rounds
         for ($round = 1; $round <= $numberOfRounds; $round++) {
-            echo PHP_EOL . "===== Round $round =====" . PHP_EOL;
+            if ($playFormattedGame) {
+                echo PHP_EOL . "===== Round $round =====" . PHP_EOL;
+            }
 
             // Executing the round
             $winner = GameRoundService::playRound($player1, $player2);
 
-            // Printing out the round results
-            echo $player1->getPlayerName() . " chose: " . $player1->getCurrentHand() . PHP_EOL;
-            echo $player2->getPlayerName() .  " chose: " . $player2->getCurrentHand() . PHP_EOL;
-            if ($winner === 0) {
-                echo "This round's a tie!";
+            if ($playFormattedGame) {
+                // Printing out the round results
+                echo $player1->getPlayerName() . " chose: " . $player1->getCurrentHand() . PHP_EOL;
+                echo $player2->getPlayerName() .  " chose: " . $player2->getCurrentHand() . PHP_EOL;
+                if ($winner === 0) {
+                    echo "This round's a tie!";
+                }
+                elseif ($winner === 1) {
+                    echo $player1->getPlayerName() . " won this round!";
+                }
+                elseif ($winner === 2) {
+                    echo $player2->getPlayerName() . " won this round!";
+                }
+                echo PHP_EOL;
             }
-            elseif ($winner === 1) {
-                echo $player1->getPlayerName() . " won this round!";
-            }
-            elseif ($winner === 2) {
-                echo $player2->getPlayerName() . " won this round!";
-            }
-            echo PHP_EOL;
         }
 
         // Getting the winner
@@ -65,6 +74,7 @@ class GameService
         }
 
         return $winner;
+
     }
 
 }

@@ -54,4 +54,8 @@ abstract class Player
         return $this->playerName;
     }
 
+    public function setPlayerName(string $newName): void {
+        $this->playerName = $newName;
+    }
+
 }
